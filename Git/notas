@@ -1,0 +1,63 @@
+O Git é um sistema de controle de versões.
+
+## AÇÕES ##
+
+
+1. Clonar um repositório é a ação que se realiza para obte-lo remotamente no nosso computador
+2. Branch: Uma branch é uma ramificação. Ao criar uma branch estamos criando uma nova ramificação independente e podemos
+alterar os arquivos do projeto sem interferir nos originais. Geralmente criamos uma branch para trabalhar numa nova funcionalidade.
+3. As alterações realizadas são separadas em Commits, que devem ser objetivos e claro.
+4. O push é ação que se realiza para enviar a alteração/criação de volta ao repositório remoto.
+5. O MERGE é a ação que se realiza para mesclar as modificações da branch criada com os arquivos originais do projeto da 
+branch principal (master). Depois do merge, é necessário dar um commit e um push.
+6. O Pull request é a ação que se realiza quando se envia a solicitação a um proprietario de repositorio, para que ele aceite ou não suas modificações no seu projeto.
+
+
+## COMANDOS ##
+
+1. Inicializar um repositório vazio ou reinicilizar um repositorio existente
+    $ git init
+2. Clonar um repositório x
+    $ git clone x
+
+3. Adicionar um arquivo à Stage Area (Stage Area: área que contém todos os arquivos relacionados ao próximo commit que será realizado):
+    $ git add 
+
+4. Fazer um commit para um repositório
+    $ git commit -m "Commit"
+
+5. Verificar o estado do repositório e do stage area
+    $ git status
+
+##
+
++ A criação do arquivo .gitignore serve para que o git ignore os arquivos estão listados dentro deste e não os envie para o repositorio.
+
++ Para arquivos que ja foram alguma vez adicionados à Stage Area (ou seja, ja usamos o git add nomedele), conseguimos fazer o commit dele sem necessitar que ele seja enviado para a Stage Area.
+
+    $ git commit -a -m "Commit"
+
+
+
+## GIT FLOW ##
+
+ 
+## Padrão de Commit ## 
+
++ [feat:] - Toda vez que a alteração for relacionada a uma nova feature
++ [fix:] - Quando for um fix em produção
++ [docs:] - Quando a alteração for na documentação do projeto
++ [refactor:] - Quando as alterações forem relacionadas a refatoração do código
++ [teste:] - Quando o commit for relacionado a teste
++ [chore:] - Quando for atualizar tasks de build, ou alguma configuração
+
+As descrições devem ser feitas sempre no imperativo. 
+* Exemplo: 
+    feat: Adicionar atualização de cálculo
+*  
+Para alterações maiores/mais complexas, pode-se aderir:
+
+    feat: Adicionar atualização de cálculo
+
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+
