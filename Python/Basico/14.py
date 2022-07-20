@@ -1,5 +1,7 @@
 from datetime import date
 
+# Linha 16. *
+
 # Recebe uma string no formato ('ano, mes, dia') e retorna seus valores no formato [ano, mes, dia]
 def formatDate(date):
     date = date.split(',')
@@ -11,7 +13,7 @@ def deltaDays(first_date, last_date):
     print(last)
     first = formatDate(first_date)
     print(first)
-    result = date(last[0], last[1], last[2]) - date(first[0], first[1], first[2]) # datetime.timedelta object
+    result = date(*last) - date(first[0], first[1], first[2]) # datetime.timedelta object
     # print(f'{result//653}')
     return result.days
 
