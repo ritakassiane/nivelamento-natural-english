@@ -1,8 +1,10 @@
+
 # def remove_value(array, value):
 #     while value in array:
 #         array.remove(value)
 #     return len(array)
 
+# TODO: refazer utilizando funções lambda
 def remove_value(array, value):
     array = list(filter((value).__ne__, array)) #.__ne__ verify if value exists in array and return a bool
     return len(array)

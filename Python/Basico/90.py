@@ -1,3 +1,4 @@
+# TODO: Slice de lista. Iniciar a lista com elementos repetidos
 
 def replace_string(string, char, n):
     new = ""
