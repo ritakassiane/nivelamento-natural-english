@@ -1,10 +1,12 @@
-
-# list comprehension python
+# def concatenate_dict(*dicts):
+#     dict_result = {}
+#     for dict in dicts:
+#         dict_result.update(dict)
+#     return dict_result
 
 def concatenate_dict(*dicts):
-    dict_result = {}
-    for dict in dicts:
-        dict_result.update(dict)
+
+    dict_result = {k: v for dict in (dicts) for k,v in dict.items()}
     return dict_result
 
 dic1={1:10, 2:20}
