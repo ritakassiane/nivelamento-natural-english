@@ -1,3 +1,4 @@
+
 def remove_duplicates(lista):
     new_list = list(set(lista))
     return new_list
