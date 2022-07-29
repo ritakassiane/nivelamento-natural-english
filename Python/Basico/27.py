@@ -1,3 +1,5 @@
+
+# TODO: buscar uma solução diferente. join
 # A função abaixo recebe uma lista e concatena seus itens em uma única string
 def join(list):
     result = ""
