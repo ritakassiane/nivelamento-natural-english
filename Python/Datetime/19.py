@@ -1,8 +1,9 @@
 from datetime import date
 from datetime import timedelta
 
+# TODO: Adicionar parametro data
 def last_data_of_day(day):
-    today = date.today()
+    today = date(2022, 7, 18)
     offset = (today.weekday() - day) % 7
     return today - timedelta(days=offset)
 

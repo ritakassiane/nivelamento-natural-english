@@ -1,0 +1,126 @@
+
+# Django é um framework feito em python para soluções web
+
+# Arquitetura MTV:
+    + Template: É a camada de apresentação
+    + View: Cada página é uma visão/projeção do site. Portanto, a view irá articular os modelos para criar as listagens desejadas, tipo de dados, etc, que queremos exibir. A partir disso, passa para o template as informações que queremos mostrar. Ou seja, faz a orquestração do que será exibido e como será exibido
+    + Model: Organizam como os dados estarão representados no Django
+
+# Filosofias:
+
+    + Desenvolvimento Rápido
+    + Don't repeat yourself
+    + Menos código
+    + Acoplamento fraco: Conseguimos pegar todos os fragmentos que existem em Django e manipular do jeito que a gente quiser
+    + Consistencia: O código sempre tem a mesma cara, independente que parte estejamos olhando, o que facilita nos entendimento sobre o código e navegar sobre ele
+
+
+$ RAIO X DO DJANGO $
+
+# Estrutura de um projeto Django
+    repositorio/
+        manage.py: conecta do django com o settings. Ou seja, inicializa o Django no contexto do seu projeto
+        myproject/
+            __init__.py 
+            settings.py : configurações [Dica: é valioso organizar o código para que o proejto tenha apeenas um settings],
+            urls.py : Módulo que contém as rotas do site. Para cada caminho, conseguimos saber qual código View será executado
+            wsgi.py: módulo wsgi que implementa uma interface de aplicação Web com o python. Ele é quem recebe as requests e retorna os responses.
+
+# Django APP: Um pacote python que contém um módulo models.py. P.S: Toda app deve ser registradas no final da tupla installed_apps em myproject/settings.py
+
+# Exemplo de estrutura geral:
+repo/
+    manage.py
+    myproject/
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+        myapp/
+            __init__.py
+            models.py
+            tests.py
+            views.py
+
+# Comandos: 
+    1. manage runserver : inicializa servidor de desenvolvimento. 
+
+    Inicializa um processo python => que instancia um projeto django => que consome o nosso settings => que levanta nossas aplicações => valida todos os modelos => espera o wsgi dizer que tem uma requisição chegando
+
+# FLuxo de requisição | Request Handler:
+
+    + Toda vez que uma requisição chega, o texto dela é parseado, processado e vira um objeto python. E as seguintes etapas são executadas:
+
+    1. Request Middleware
+        [Middleware] => função global da aplicação a qual está registrada no settings, que representa uma classe que implementa até 4 métodos: request middleware view middleware, template middleware e um response middleware. 
+        
+        Os middlewares existem para que possamos cumprir com a fisolofia menos código. Para cada ação usada muitas vezes no contexto de requisições, transformamos em um middleware
+
+    2. Url Resolve => mapeamento de quais são as urls que existem no sistema e quais são suas views
+    3. View Middleware => Sempre chamado antes da view ser chamada. Ele recebe do url resolve, qual a view será executada, quais são os parametros, qual o request, etc.
+    4. View: Recebe a request pra tratar um caso particular
+    5. Template Response Middleware
+    6. Response Middleware
+
+# URLConf: Um módulo que contém uma variável urlpatterns que referencia uma sequencia de rotas associadas à views.
+
+# URL Resolvers:
+    Possui duas funções:
+    + resolve(): é capaz de pegar a uma view e descobrir qual a url e parametros serao chamados
+    + reverse(): Dadp uma view e parametros, ele consegue dizer qual a rota
+
+# VIEW:
+    É um callable (um objeto python executário, ex: uma fun~ção ou um método de objeto) que recebe uma instancia HttpRequest e retorna uma instância de HttpResponse. 
+
+    [exemplo]: 
+        from django.http import HttpResponse
+        
+        def myView(request):
+            return HttpResponse('Salve!')
+
+# Models: 
+    São classes que refletem como o SQL estara estruturado através dos modelsFields.
+
+
+# Mão no código # 
+
+1. Cria um ambiente virtual:
+
+    python -m venv .nome-do-ambiente
+
+    .nome-do-ambiente/Scripts/activate para ativar o ambiente
+
+2. Download do Django no ambiente virtual:
+
+    pip install Django
+
+3. Criando projeto: 
+
+    django-admin startproject nomedoprojeto .
+
+4. Start para ver se ta tudo certo:
+    manage runserver    
+
+5. Criando uma App:
+    manage startapp nomedaapp
+
+6. Instalar app criada no settings do projeto:
+    nomedaapp/settings.py
+
+    No final da lista INSTALLED_APPS, adicionar 'eventex.core', (nomedoprojeto.nomedaapp),
+
+7. Criar uma rota:
+    em nomedoprojeto/urls.py , adicionamos mais um item na lista urlpatterns[].
+    
+    7.1 importamos a views: import eventex.core.views
+    7.2 adicionamenos a view especifica na rota que queremos: path('', eventex.core.views.home),
+
+8. Criar rota especificada: 
+    vai ate o arquivo views.py da sua app (eventex/core/views.py) e cria uma calladble que recebe uma request e retorna um response, sendo essa response o retorno da função render. Ou seja
+    
+    def home(request):
+        return render(request, 'index.html')
+
+9. Criar template: 
+    9.1 Dentro da pasta da app (eventex/core), criamos um diretorio chamado templates. Dentro dele, o arquivo html associado.
+

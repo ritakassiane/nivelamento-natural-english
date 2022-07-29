@@ -5,7 +5,6 @@
 #     return dict_result
 
 def concatenate_dict(*dicts):
-
     dict_result = {k: v for dict in (dicts) for k,v in dict.items()}
     return dict_result
 

@@ -6,7 +6,7 @@
 
 
 def dict_n_elements_square(n):
-    dict = {elemento: elemento*2 for elemento in range(1,n+1)}
+    dict = {elemento: elemento**2 for elemento in range(1,n+1)}
     return dict
 
 
